@@ -1,7 +1,5 @@
 ## React-Bootstrap-Project
 
-<hr/>
-
 ## About
 
 <hr/>
