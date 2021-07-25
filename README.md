@@ -2,8 +2,6 @@
 
 ## About
 
-<hr/>
-
 <p>This is an application that gives some information about all countries in the world.</p>
 
 Application let's user to:
@@ -14,8 +12,6 @@ Application let's user to:
 The live version of app is [Here](https://react-bootstrap-project.vercel.app)
 
 ## Getting Started
-
-<hr/>
 
 - Clone the repository
 
