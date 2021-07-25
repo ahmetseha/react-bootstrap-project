@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import "./App.css";
-import SearchBar   from "./components/SearchBar";
+import "bootstrap/dist/css/bootstrap.min.css";
+import SearchBar from "./components/SearchBar";
 import Countries from "./containers/Countries";
+import Header from "./components/Header";
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -17,10 +18,10 @@ function App() {
         setCountries(res.data);
         setIsLoading(false);
       } else {
-        const result = await axios(
+        const res = await axios(
           `https://restcountries.eu/rest/v2/name/${query}`
         );
-        setCountries(result.data);
+        setCountries(res.data);
         setIsLoading(false);
       }
     };
@@ -32,19 +33,23 @@ function App() {
     setSearchCountries(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setQuery(searchCountries);
-  };
+  const filtered = countries.filter((item) => {
+    return item.capital
+      .toString()
+      .toLowerCase()
+      .includes(searchCountries.toLowerCase());
+  });
 
   return (
-    <div className="App">
-      <SearchBar
-        handleSubmit={handleSubmit}
-        onChange={onChange}
-        searchCountries={searchCountries}
-      />
-      <Countries countries={countries} isLoading={isLoading} />
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+      }}>
+      <Header />
+      <SearchBar onChange={onChange} searchCountries={searchCountries} />
+      <Countries countries={filtered} isLoading={isLoading} />
     </div>
   );
 }

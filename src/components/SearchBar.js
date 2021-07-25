@@ -1,23 +1,16 @@
+import { InputGroup, FormControl } from "react-bootstrap";
 
-const SearchBar = ({ handleSubmit, onChange, searchCountries }) => {
+const SearchBar = ({ onChange, searchCountries }) => {
   return (
-    <div className="">
-      <form
-        className=""
-        onSubmit={handleSubmit}
-      >
-        <div>
-          <i className="fas fa-search"></i>
-        </div>
-        <input
-          type="text"
-          placeholder="Search countries"
-          onChange={onChange}
-          value={searchCountries}
-          className=""
-        />
-      </form>
-    </div>
+    <InputGroup className="p-3" style={{ width: "40%", margin: "2rem auto" }}>
+      <FormControl
+        className="border border-2 border-dark rounded-start rounded-3"
+        value={searchCountries}
+        onChange={onChange}
+        placeholder="Search..."
+        aria-describedby="inputGroup-sizing-default"
+      />
+    </InputGroup>
   );
 };
 
