@@ -8,36 +8,27 @@ import Header from "./components/Header";
 function App() {
   const [countries, setCountries] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [query, setQuery] = useState("");
   const [searchCountries, setSearchCountries] = useState("");
 
   useEffect(() => {
-    const getCountries = async () => {
-      if (query === "") {
-        const res = await axios(`https://restcountries.eu/rest/v2/all`);
-        setCountries(res.data);
-        setIsLoading(false);
-      } else {
-        const res = await axios(
-          `https://restcountries.eu/rest/v2/name/${query}`
-        );
-        setCountries(res.data);
-        setIsLoading(false);
-      }
-    };
-
-    getCountries();
-  }, [query]);
+    setIsLoading(false);
+    axios
+      .get(`https://restcountries.eu/rest/v2/all`)
+      .then((res) => setCountries(res.data));
+  }, []);
 
   const onChange = (e) => {
     setSearchCountries(e.target.value);
   };
 
   const filtered = countries.filter((item) => {
-    return item.capital
-      .toString()
-      .toLowerCase()
-      .includes(searchCountries.toLowerCase());
+    return Object.keys(item).some((key) => {
+      console.log(item);
+      return item[key]
+        .toString()
+        .toLowerCase()
+        .includes(searchCountries.toString().toLowerCase());
+    });
   });
 
   return (
