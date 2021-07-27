@@ -19,12 +19,18 @@ function App() {
 
   const onChange = (e) => {
     let charMap = {
-      çÇ: "c",
-      ğĞ: "g",
-      şŞ: "s",
-      üÜ: "u",
-      ıİ: "i",
-      öÖ: "o",
+      ç: "c",
+      Ç: "C",
+      ğ: "g",
+      Ğ: "G",
+      ş: "s",
+      Ş: "S",
+      ü: "u",
+      Ü: "U",
+      ı: "i",
+      İ: "I",
+      ö: "o",
+      Ö: "O",
     };
     for (var key in charMap) {
       e.target.value = e.target.value.replace(
@@ -37,7 +43,6 @@ function App() {
         .replace(/[^-a-zA-Z0-9\s]+/gi, "")
         .replace(/\s/gi, "-")
         .replace(/[-]+/gi, "-")
-        .toLowerCase()
     );
   };
 
