@@ -18,18 +18,54 @@ function App() {
   }, []);
 
   const onChange = (e) => {
-    setSearchCountries(e.target.value);
+    let charMap = {
+      çÇ: "c",
+      ğĞ: "g",
+      şŞ: "s",
+      üÜ: "u",
+      ıİ: "i",
+      öÖ: "o",
+    };
+    for (var key in charMap) {
+      e.target.value = e.target.value.replace(
+        new RegExp("[" + key + "]", "g"),
+        charMap[key]
+      );
+    }
+    setSearchCountries(
+      e.target.value
+        .replace(/[^-a-zA-Z0-9\s]+/gi, "")
+        .replace(/\s/gi, "-")
+        .replace(/[-]+/gi, "-")
+        .toLowerCase()
+    );
   };
 
-  const filtered = countries.filter((item) => {
-    return Object.keys(item).some((key) => {
-      console.log(item);
-      return item[key]
+  // const filtered = countries.filter((item) => {
+  //   return Object.keys(item).some((key) => {
+  //     console.log(item);
+  //     return item[key]
+  //       .toString()
+  //       .toLowerCase()
+  //       .includes(searchCountries.toString().toLowerCase());
+  //   });
+  // });
+
+  const filtered = countries.filter(
+    (item) =>
+      item.name
         .toString()
         .toLowerCase()
-        .includes(searchCountries.toString().toLowerCase());
-    });
-  });
+        .includes(searchCountries.toLowerCase()) ||
+      item.capital
+        .toString()
+        .toLowerCase()
+        .includes(searchCountries.toLowerCase()) ||
+      item.region
+        .toString()
+        .toLowerCase()
+        .includes(searchCountries.toLowerCase())
+  );
 
   return (
     <div

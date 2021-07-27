@@ -8,9 +8,7 @@ const Header = () => {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
-            <a
-              href="https://github.com/ahmetseha/react-bootstrap-table-project"
-              target="_blank">
+            <a href="https://github.com/ahmetseha/react-bootstrap-table-project">
               Repo
             </a>
           </Navbar.Text>
